@@ -3,7 +3,7 @@ pipeline {
     stages {
 	stage('plan') {
 		steps {
-			sh "ls -al"
+			sh "/opt/terraform/terraform init"
 			sh "set +e; /opt/terraform/terraform plan -out=plan.out -detailed-exitcode; echo \$? &gt; status"
 		}
 
