@@ -2,12 +2,14 @@ pipeline {
     agent any
     stages {
 	stage('init') {
+		steps {
 			withCredentials([azureServicePrincipal('a62cdfa8-c458-4cb0-b5b0-217e21c6aea3')]) {
 				ARM_SUBSCRIPTION_ID=env.AZURE_SUBSCRIPTION_ID
 				ARM_CLIENT_ID=env.AZURE_CLIENT_ID
 				ARM_CLIENT_SECRET=env.AZURE_CLIENT_SECRET
 				ARM_TENANT_ID=env.AZURE_TENANT_ID
 			}
+		}
 	}
 	stage('plan') {
 		steps {
