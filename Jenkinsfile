@@ -1,9 +1,16 @@
 pipeline {
-    agent { docker { image 'node:6.3' } }
+    agent any
     stages {
+	stage('plan') {
+		steps {
+			sh "ls -al"
+			sh "set +e; terraform plan -out=plan.out -detailed-exitcode; echo \$? &gt; status"
+		}
+
+	}
         stage('build') {
             steps {
-                sh 'npm --version'
+                sh "terraform --version"
             }
         }
     }
