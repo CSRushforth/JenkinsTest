@@ -33,7 +33,7 @@ pipeline {
 	}
         stage('build') {
             steps {
-                sh "terraform --version"
+            		sh "/opt/terraform/terraform apply plan.out"
             }
         }
     }
