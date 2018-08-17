@@ -38,7 +38,7 @@ pipeline {
 				export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
 				export ARM_TENANT_ID=$ARM_TENANT_ID
 				export ARM_ENVIRONMENT=public
-				/opt/terraform/terraform apply plan.out"
+				/opt/terraform/terraform apply plan.out
 				echo \$?
 			"""
             }
