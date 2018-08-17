@@ -25,8 +25,7 @@ pipeline {
 				export ARM_ENVIRONMENT=public
 				env
 				/opt/terraform/terraform plan -out=plan.out -detailed-exitcode
-				echo \$? &gt
-				status
+				echo \$?
 			"""
 		}
 
