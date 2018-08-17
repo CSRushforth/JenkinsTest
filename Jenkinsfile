@@ -23,7 +23,6 @@ pipeline {
 				export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
 				export ARM_TENANT_ID=$ARM_TENANT_ID
 				export ARM_ENVIRONMENT=public
-				env
 				/opt/terraform/terraform plan -out=plan.out -detailed-exitcode
 				echo \$?
 			"""
@@ -32,7 +31,16 @@ pipeline {
 	}
         stage('build') {
             steps {
-            		sh "/opt/terraform/terraform apply plan.out"
+            		sh """
+				set +e
+				export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
+				export ARM_CLIENT_ID=$ARM_CLIENT_ID
+				export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
+				export ARM_TENANT_ID=$ARM_TENANT_ID
+				export ARM_ENVIRONMENT=public
+				/opt/terraform/terraform apply plan.out"
+				echo \$?
+			"""
             }
         }
     }
